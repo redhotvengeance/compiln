@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var compiln = require('../lib/compiln');
+
+program.version('0.0.1');
+
+program
+  .command('build')
+  .description('compile assets and generate manifest')
+  .option('-b, --bare', 'disable file versioning')
+  .action(function(options)
+  {
+    var version = true;
+    if (typeof options.bare !== undefined && options.bare !== null)
+    {
+      if (options.bare)
+      {
+        version = false;
+      }
+    }
+    compiln.compile({"buildOnStart":true, "version":version});
+  });
+
+program.parse(process.argv);
