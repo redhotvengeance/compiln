@@ -73,6 +73,30 @@ These settings will be overwritten by any settings made when integrating the mid
 
 "sources" is an array of files that should be compiled by compiln (used by the CLI). Note that the source file name uses the compiled extension (`.js`) rather than the preprocessor extension (`.coffee`).
 
+##  Versioning
+
+compiln has the built in ability to "version" (or "fingerprint") compiled assets. When using versioning, a source file like:
+
+`main.js`
+
+will compile into something like this:
+
+`main.1234567890abcdefghijklmnopqrstuv.js`
+
+The "version number" is an MD5 tag, and its generation is based off of the file's content. If you were to recompile the exact same file, it would have the exact same version number. This allows you to set the client-side caching of your assets to a very-long/never expiry date. If the file contents change, the client will be automatically requesting a different filename.
+
+compiln includes a method to retrieve the versioned filename of an asset. This is especially useful if you are using a templating language that allows for function calls, like [Jade](https://github.com/visionmedia/jade). To inject the versioned filename, simply use the `versionedFile` method:
+
+```jade
+link(href="#{versionedFile('/styles/style.css')}", rel="stylesheet")
+```
+
+This will render HTML something like:
+
+```html
+<link href="/styles/style.1234567890abcdefghijklmnopqrstuv.css" rel="stylesheet">
+```
+
 ## Plugins
 
 One of the benefits of compiln is that it is an open preprocessor compiling platform - it does not specify or dictate which preprocessors to use. If you would like to use compiln to compile an asset type for which a plugin does not exist, then you can easily write a new plugin.
