@@ -107,6 +107,8 @@ compiln plugins require three methods to be defined. These methods should be mad
 * `module.exports.ext` - Should return a string of the desitination extension - the extension the source files will compile into. This **should not** include the dot (ie. `js`).
 * `module.exports.compile` - Accepts two parameters: `file` and `options`. `file` is the source file path. `options` will contain any options passed when the plugin is passed to compiln. This method should load the source file (ie. via `fs.readFileSync`) and return the compiled data.
 
+The [wiki](https://github.com/redhotvengeance/compiln/wiki) keeps a list of available plugins. If you contribute a plugin, add it to the list so others can find it too.
+
 ## CLI
 
 If you'd rather not use compiln as middleware, compiln includes a CLI to allow you to precompile your assets.
