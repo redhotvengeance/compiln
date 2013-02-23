@@ -7,6 +7,10 @@
   },
   "keywords": ["build", "assets", "compile", "middleware", "plugins"],
   "engines" : ["node"],
+  "repository":   {
+    "type": "git",
+    "url": "git://github.com/redhotvengeance/compiln.git"
+  },
   "main" : "./lib/compiln",
   "bin": {
     "compiln": "./bin/compiln"
