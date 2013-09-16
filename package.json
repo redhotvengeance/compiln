@@ -3,15 +3,26 @@
   "description": "Asset compiler middleware for Connect (node.js) that supports plugins.",
   "version": "0.2.2",
   "author": {
-    "name": "Ian Lollar"
+    "name": "Ian Lollar",
+    "email": "rhv@redhotvengeance.com",
+    "url": "http://redhotvengeance.com"
   },
-  "keywords": ["build", "assets", "compile", "middleware", "plugins"],
-  "engines" : ["node"],
-  "repository":   {
+  "keywords": [
+    "build",
+    "assets",
+    "compile",
+    "middleware",
+    "plugins"
+  ],
+  "engines": [
+    "node"
+  ],
+  "repository": {
     "type": "git",
     "url": "git://github.com/redhotvengeance/compiln.git"
   },
-  "main" : "./lib/compiln",
+  "homepage": "https://github.com/redhotvengeance/compiln",
+  "main": "./lib/compiln",
   "bin": {
     "compiln": "./bin/compiln"
   },
