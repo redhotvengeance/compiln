@@ -3,12 +3,12 @@
 var program = require('commander');
 var compiln = require('../lib/compiln');
 
-program.version('0.1.0');
 function list(val) {
   return val.split(',');
 }
 
 program
+  .version('0.3.0')
   .option('-b, --bare', 'disable file versioning')
   .option('-f, --files <files>', 'compile specified files', list);
 
