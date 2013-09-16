@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "node-fs": "~0.1.7",
+    "async": "~0.2.9",
     "commander": "~2.0.0"
   }
 }
