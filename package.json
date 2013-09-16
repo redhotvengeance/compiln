@@ -16,7 +16,7 @@
     "compiln": "./bin/compiln"
   },
   "dependencies": {
-    "node-fs": "0.1.4",
-    "commander": "1.0.0"
+    "node-fs": "~0.1.7",
+    "commander": "~2.0.0"
   }
 }
