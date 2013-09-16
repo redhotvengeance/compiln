@@ -104,7 +104,7 @@ One of the benefits of compiln is that it is an open preprocessor compiling plat
 compiln plugins require three methods to be defined. These methods should be made available by adding them to `module.exports`:
 
 * `module.exports.detect` - Should return an array of extensions. These are the extensions that the source files possess. The extensions **should not** include the dot (ie. `coffee`).
-* `module.exports.ext` - Should return a string of the desitination extension - the extension the source files will compile into. This **should not** include the dot (ie. `js`).
+* `module.exports.ext` - Should return a string of the destination extension - the extension the source files will compile into. This **should not** include the dot (ie. `js`).
 * `module.exports.compile` - Accepts two parameters: `file` and `options`. `file` is the source file path. `options` will contain any options passed when the plugin is passed to compiln. This method should load the source file (ie. via `fs.readFileSync`) and return the compiled data.
 
 The [wiki](https://github.com/redhotvengeance/compiln/wiki) keeps a list of available plugins. If you contribute a plugin, add it to the list so others can find it too.
@@ -125,7 +125,7 @@ To build the files:
 compiln build
 ```
 
-Use the `-b` argument to compile without versioning.
+Use the `-b` argument to compile without versioning. To compile specific files, pass the files as a comma-delimitated list with the `-f` flag.
 
 Note that the CLI requires `compiln.json` in order to utilize plugins and know which files should be compiled.
 
