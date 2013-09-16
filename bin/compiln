@@ -4,22 +4,37 @@ var program = require('commander');
 var compiln = require('../lib/compiln');
 
 program.version('0.1.0');
+function list(val) {
+  return val.split(',');
+}
+
+program
+  .option('-b, --bare', 'disable file versioning')
+  .option('-f, --files <files>', 'compile specified files', list);
 
 program
   .command('build')
   .description('compile assets and generate manifest')
-  .option('-b, --bare', 'disable file versioning')
-  .action(function(options)
-  {
-    var version = true;
-    if (typeof options.bare !== undefined && options.bare !== null)
+  .action(function() {
+    var options = {};
+
+    options.buildOnStart = true;
+    options.version = true;
+
+    if (typeof program.bare !== undefined && program.bare !== null)
     {
-      if (options.bare)
+      if (program.bare)
       {
-        version = false;
+        options.version = false;
       }
     }
-    compiln.compile({"buildOnStart":true, "version":version});
+
+    if (typeof program.files !== undefined && program.files !== null)
+    {
+      options.sources = program.files;
+    }
+
+    compiln.compile(options);
   });
 
 program.parse(process.argv);
