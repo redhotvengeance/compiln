@@ -97,6 +97,16 @@ This will render HTML something like:
 <link href="/styles/style.1234567890abcdefghijklmnopqrstuv.css" rel="stylesheet">
 ```
 
+compiln has a secondary helper to allow for versioned filename injection into files that don't support helper functions. After compiling a file, compiln will look for all versioned files declared with the following format:
+
+```bash
+versionedFile`path/to/file.ext`
+```
+
+compiln will replace all instances of the above format with a string of the versioned file path.
+
+Whether through template helper functions or keyed string replacement, compiln can easily version your files and ensure that the correct file names are compiled into your code.
+
 ## Plugins
 
 One of the benefits of compiln is that it is an open preprocessor compiling platform - it does not specify or dictate which preprocessors to use. If you would like to use compiln to compile an asset type for which a plugin does not exist, then you can easily write a new plugin.
@@ -104,8 +114,8 @@ One of the benefits of compiln is that it is an open preprocessor compiling plat
 compiln plugins require three methods to be defined. These methods should be made available by adding them to `module.exports`:
 
 * `module.exports.detect` - Should return an array of extensions. These are the extensions that the source files possess. The extensions **should not** include the dot (ie. `coffee`).
-* `module.exports.ext` - Should return a string of the destination extension - the extension the source files will compile into. This **should not** include the dot (ie. `js`).
-* `module.exports.compile` - Accepts two parameters: `file` and `options`. `file` is the source file path. `options` will contain any options passed when the plugin is passed to compiln. This method should load the source file (ie. via `fs.readFileSync`) and return the compiled data.
+* `module.exports.ext` - Should return a string of the destination extension - the extension the source files will compile into. This **should not** include the dot (ie. `js`). If the plugin will compile into the same format as the source file, return `null` and compiln will use the extensions declared in `module.exports.detect`.
+* `module.exports.compile` - Accepts three parameters: `file`, `options`, and `callback`. `file` is the source file path. `options` will contain any options passed when the plugin is passed to compiln. `options.versionedFile` is automatically included in all plugin `options` - this can be used to pass the `versionedFile` helper to the third-party compiler. The `compile` method should load the source file (ie. via `fs.readFileSync`) and return the compiled data.
 
 The [wiki](https://github.com/redhotvengeance/compiln/wiki) keeps a list of available plugins. If you contribute a plugin, add it to the list so others can find it too.
 
