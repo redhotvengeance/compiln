@@ -1,5 +1,7 @@
 # compiln
 
+[![NPM version](https://badge.fury.io/js/compiln.png)](http://badge.fury.io/js/compiln)
+
 Open-armed asset compiling for Node.js.
 
 compiln uses a plugin-based architecture to allow YOU to choose your preprocssor stack, not me.
